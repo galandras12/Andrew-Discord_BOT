@@ -1,7 +1,6 @@
 const Discord = require("discord.js");
 const config = require("./config.json");
 const client = new Discord.Client();
-const CLEAR_MESSAGES = '!clear';
 const prefix = "!";
 
 require('log-timestamp')('ANDREW-BOT:');
