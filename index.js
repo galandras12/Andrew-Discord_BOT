@@ -12,26 +12,26 @@ client.on('ready', () => {
   
   setInterval(function(){
 client.channels.cache.get("ChannelID1").bulkDelete(100).catch(console.error);
-console.log('DELETED last 100 messages in PÉNÜGY EADAT!');
+console.log('DELETED last 100 messages in channelname!');
 client.channels.cache.get("ChannelID_BOTMAIN").send("`DELETED` last 100 messages in `channelname`");
   }, 1000*60*60 ); // Hour 1
   
   setInterval(function(){
 client.channels.cache.get("ChannelID2").bulkDelete(100).catch(console.error);
-console.log('DELETED last 100 messages in ADÓ EADAT!');
+console.log('DELETED last 100 messages in channelname!');
 client.channels.cache.get("ChannelID_BOTMAIN").send("`DELETED` last 100 messages in `channelname`");
   }, 1000*60*60 ); // Hour 1
   
   setInterval(function(){
 client.channels.cache.get("ChannelID3").bulkDelete(100).catch(console.error);
-console.log('DELETED last 100 messages in Közlemények!');
+console.log('DELETED last 100 messages in channelname!');
 client.channels.cache.get("ChannelID_BOTMAIN").send("`DELETED` last 100 messages in `channelname`");
   }, 1000*60*60 ); // 1000 ms * 60s * 120/60min 
   
   /*client.user.setPresence({
         status: "online",  //You can show online, idle....
         game: {
-            name: "HIVATAL-os robot. Fejlesztés alatt by Gál András",  //The message shown
+            name: "HIVATALos robot. Fejlesztés alatt by Gál András",  //The message shown
             type: "PLAYING" //PLAYING: WATCHING: LISTENING: STREAMING:
         }
     });
