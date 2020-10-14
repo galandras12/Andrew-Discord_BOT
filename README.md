@@ -1,10 +1,7 @@
 # Andrew-Discord_BOT
 Discord BOT Andrew edition
 
-NEED:
--NodeJS
+Need app: NodeJS ( https://nodejs.org/en/ )
 
-Need in NodeJS module:
--DiscordJS
--log-timestamp
+Need in NodeJS module: DiscordJS ( npm install discord.js ), log-timestamp ( npm install log-timestamp )
 
