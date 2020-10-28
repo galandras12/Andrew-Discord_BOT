@@ -1,15 +1,32 @@
 {
-  "name": "dcbot",
+  "name": "andrewdcbot",
   "version": "1.0.0",
   "description": "Hivatalos Andrew Discord bot",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "",
-  "license": "ISC",
   "dependencies": {
-    "discord.js": "^12.3.1",
-    "log-timestamp": "^0.3.0"
-  }
+    "console-inject": "^1.0.8",
+    "discord.js": "^12.4.0",
+    "imap": "^0.8.19",
+    "node-cron": "^2.0.3",
+    "node-pop3": "^0.6.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/galandras12/Andrew-Discord_BOT.git"
+  },
+  "keywords": [
+    "Discord.JS",
+    "bot"
+  ],
+  "author": "Andras Gal - Mezobereny",
+  "license": "ISC",
+  "bugs": {
+    "url": "git+https://github.com/galandras12/Andrew-Discord_BOT/issues"
+    },
+  "homepage": "https://github.com/galandras12/Andrew-Discord_BOT#readme"
 }
