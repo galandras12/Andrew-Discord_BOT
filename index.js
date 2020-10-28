@@ -2,42 +2,84 @@ const Discord = require("discord.js");
 const config = require("./config.json");
 const client = new Discord.Client();
 const prefix = "!";
-
-require('log-timestamp')('ANDREW-BOT:');
+var cron = require('node-cron');
+//require('log-timestamp')('ANDREW-BOT:', 'Europe/Budapest');
+require('console-inject');
 
 client.on('ready', () => {
   console.log('BOT is RUN');
   client.channels.cache.get("ChannelID_BOTMAIN").send("Andrew BOT is `RESTARTED`");
-  
- /* setInterval(function(){
-client.channels.cache.get("ChannelID1").bulkDelete(100).catch(console.error);
-console.log('DELETED last 100 messages in channelname!');
-client.channels.cache.get("ChannelID_BOTMAIN").send("`DELETED` last 100 messages in `channelname`");
-  }, 1000*60*60 ); // Hour 1
-  
-  setInterval(function(){
-client.channels.cache.get("ChannelID2").bulkDelete(100).catch(console.error);
-console.log('DELETED last 100 messages in channelname!');
-client.channels.cache.get("ChannelID_BOTMAIN").send("`DELETED` last 100 messages in `channelname`");
-  }, 1000*60*60 ); // Hour 1
-  
-  setInterval(function(){
-client.channels.cache.get("ChannelID3").bulkDelete(100).catch(console.error);
-console.log('DELETED last 100 messages in channelname!');
-client.channels.cache.get("ChannelID_BOTMAIN").send("`DELETED` last 100 messages in `channelname`");
-  }, 1000*60*60 ); // 1000 ms * 60s * 120/60min */
-  
-  /*client.user.setPresence({
-        status: "online",  //You can show online, idle....
-        game: {
-            name: "HIVATALos robot. Fejlesztés alatt by Gál András",  //The message shown
-            type: "PLAYING" //PLAYING: WATCHING: LISTENING: STREAMING:
-        }
-    });
-  
+
+cron.schedule('00 17 * * 3', () => {
+client.user.setActivity("WORK END soon START", {
+  type: "WATCHING",
+  url: "https://galandras.com"
 });
-//OFF
-*/
+});
+
+cron.schedule('0 15 * * 1,2,4', () => {
+client.user.setActivity("WORK END soon START", {
+  type: "WATCHING",
+  url: "https://galandras.com"
+});
+});
+
+cron.schedule('35 13 * * 5', () => {
+client.user.setActivity("WORK END soon START", {
+  type: "WATCHING",
+  url: "https://galandras.com"
+});
+});
+
+var facts = ['Random text 1', 'Random 2 text', 'Random 3 text message']
+setInterval(function() {
+  var fact = Math.floor(Math.random() * facts.length)
+  client.user.setActivity(facts[fact], {
+  type: "WATCHING",
+  url: "https://galandras.com"
+}); // Every minutes
+}, 60*1000)
+
+cron.schedule('0 14 * * 5', () => {
+   client.channels.cache.get("ChannelID3").bulkDelete(100).catch(console.error);
+	console.log('DELETED last 100 messages in Channel3!');
+	client.channels.cache.get("ChannelID2").bulkDelete(100).catch(console.error);
+	console.log('DELETED last 100 messages in Channel2!');
+	client.channels.cache.get("ChannelID1").bulkDelete(100).catch(console.error);
+	console.log('DELETED last 100 messages in Channel1!');
+	client.channels.cache.get("Channel_BOTMAIN").send("WORK END RUTIN: \n`DELETED` last 100 messages in `Channel3!`, `Channel2!`, `Channel1!`");
+});
+
+cron.schedule('0 16 * * 1,2,4', () => {
+    client.channels.cache.get("ChannelID3").bulkDelete(100).catch(console.error);
+	console.log('DELETED last 100 messages in Channel3!');
+	client.channels.cache.get("ChannelID2").bulkDelete(100).catch(console.error);
+	console.log('DELETED last 100 messages in Channel2!');
+	client.channels.cache.get("ChannelID1").bulkDelete(100).catch(console.error);
+	console.log('DELETED last 100 messages in Channel1!');
+	client.channels.cache.get("Channel_BOTMAIN").send("WORK END RUTIN: \n`DELETED` last 100 messages in `Channel3!`, `Channel2!`, `Channel1!`");
+});
+
+cron.schedule('00 18 * * 3', () => {
+    client.channels.cache.get("ChannelID3").bulkDelete(100).catch(console.error);
+	console.log('DELETED last 100 messages in Channel3!');
+	client.channels.cache.get("ChannelID2").bulkDelete(100).catch(console.error);
+	console.log('DELETED last 100 messages in Channel2!');
+	client.channels.cache.get("ChannelID1").bulkDelete(100).catch(console.error);
+	console.log('DELETED last 100 messages in Channel1!');
+	client.channels.cache.get("Channel_BOTMAIN").send("WORK END RUTIN: \n`DELETED` last 100 messages in `Channel3!`, `Channel2!`, `Channel1!`");
+});
+
+cron.schedule('00 12 * * 1,2,3,4,5', () => {
+    client.channels.cache.get("ChannelID3").bulkDelete(100).catch(console.error);
+	console.log('DELETED last 100 messages in Channel3!');
+	client.channels.cache.get("ChannelID2").bulkDelete(100).catch(console.error);
+	console.log('DELETED last 100 messages in Channel2!');
+	client.channels.cache.get("ChannelID1").bulkDelete(100).catch(console.error);
+	console.log('DELETED last 100 messages in Channel1!');
+	client.channels.cache.get("Channel_BOTMAIN").send("12:00 - DÉLI TISZTÍTÁS RUTIN: \n`DELETED` last 100 messages in `Channel3!`, `Channel2!`, `Channel1!`");
+
+  });
 
 client.on("message", function(message) {
   if (message.author.bot) return;
