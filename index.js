@@ -53,8 +53,8 @@ setInterval(function() {
   client.user.setActivity(facts[fact], {
   type: "WATCHING",
   url: "https://galandras.com"
-}); // Every minutes
-}, 60*1000)
+}); // Every hour
+}, 60*60*1000)
 
 cron.schedule('0 14 * * 5', () => {
    client.channels.cache.get("ChannelID3").bulkDelete(100).catch(console.error);
@@ -144,6 +144,15 @@ message.reply("`használd a következő paancsokat: `\n`Válasz időt mutatja a 
 }
 else if (command === "adhelp") {
 		message.reply("`használd a következő admin paancsokat: `\n`Közlemény törlés: !delkoz`\n`Pénzügy eAdat törlése: !delpadat`\n`Adó eAdat törlése: !delaadat`");
+}
+	
+	else if (command === "rstat") {
+const randommessages = ['Random text 1', 'Random 2 text', 'Random 3 text message']
+const randomMessage = randommessages[Math.floor(Math.random() * randommessages.length)];
+client.user.setActivity(randomMessage, {
+  type: "WATCHING",
+  url: "https://mezobereny.hu"
+});
 }
 
 });
