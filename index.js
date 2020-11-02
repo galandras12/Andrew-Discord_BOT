@@ -3,12 +3,28 @@ const config = require("./config.json");
 const client = new Discord.Client();
 const prefix = "!";
 var cron = require('node-cron');
+const notifier = require('mail-notifier');
 //require('log-timestamp')('ANDREW-BOT:', 'Europe/Budapest');
 require('console-inject');
 
 client.on('ready', () => {
   console.log('BOT is RUN');
   client.channels.cache.get("ChannelID_BOTMAIN").send("Andrew BOT is `RESTARTED`");
+	
+const imap = {
+  user: 'googlebasedemail@gmail.com',
+  password: 'this-is-the-google-apppassword',
+  host: 'imap.gmail.com',
+  port: 993,
+  tls: true,
+  tlsOptions: { rejectUnauthorized: false },
+  box: 'Notification',
+};
+	
+const n = notifier(imap);
+n.on('end', () => n.start()) // session closed
+  .on('mail', mail => client.channels.cache.get("ChannelID_BOTMAIN").send(mail.subject))
+  .start();
 
 cron.schedule('00 17 * * 3', () => {
 client.user.setActivity("WORK END soon START", {
