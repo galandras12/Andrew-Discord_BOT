@@ -3,5 +3,10 @@ Discord BOT Andrew edition
 
 Need app: NodeJS ( https://nodejs.org/en/ )
 
-Need in NodeJS module: DiscordJS ( npm install discord.js ), log-timestamp ( npm install log-timestamp )
+# Require app/modules
+Need in NodeJS module: 
+- DiscordJS ( npm install discord.js )
+- log-timestamp ( npm install log-timestamp )
+- mail-notifier ( npm install mail-notifier )
+- node-cron ( npm install node-cron )
 
