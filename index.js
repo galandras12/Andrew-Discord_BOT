@@ -11,6 +11,9 @@ client.on('ready', () => {
   console.log('BOT is RUN');
   client.channels.cache.get("ChannelID_BOTMAIN").send("Andrew BOT is `RESTARTED`");
 	
+  client.user.setStatus('dnd')
+  //Status: online, idle, invisible, dnd
+	
 const imap = {
   user: 'googlebasedemail@gmail.com',
   password: 'this-is-the-google-apppassword',
