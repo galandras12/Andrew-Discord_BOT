@@ -115,6 +115,11 @@ client.on("message", function(message) {
     const sum = numArgs.reduce((counter, x) => counter += x);
     message.reply(`az összege: ${sum}!`);
   }
+	
+  else if (command === "kocka") {
+    var response = [Math.floor(Math.random() * ((100 - 1) + 1) + 1)];
+    message.channel.send("Ez most... " + response + "!").then().catch(console.error);
+  }
   
 else if (command === "dela") {
 	client.channels.cache.get("ChannelID1").bulkDelete(100).catch(console.error);
