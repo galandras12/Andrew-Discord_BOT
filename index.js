@@ -1,33 +1,37 @@
 const Discord = require("discord.js");
 const config = require("./config.json");
+const mailauth = require("./authmail.json");
+const notifier = require('mail-notifier');
 const client = new Discord.Client();
 const prefix = "!";
 var cron = require('node-cron');
-const notifier = require('mail-notifier');
-//require('log-timestamp')('ANDREW-BOT:', 'Europe/Budapest');
 require('console-inject');
+const clearchannelid = ['ChannelID1', 'ChannelID2', 'ChannelID3']; //Use developer mode in Discord app & add your channel ID
+const msgchannelid = ['MessageChannelID1', 'MessageChannelID2', 'MessageChannelID3', 'MessageChannelID4', 'MessageChannelID5', 'MessageChannelID6', 'MessageChannelID7', 'MessageChannelID8']; //All channel id message send 
+const channelbotmain = ['Channel_BOTMAIN_ID']; //your Bot main channel id here (not tested)
 
 client.on('ready', () => {
   console.log('BOT is RUN');
-  client.channels.cache.get("ChannelID_BOTMAIN").send("Andrew BOT is `RESTARTED`");
+  client.channels.cache.get(channelbotmain).send("Andrew BOT is `RESTARTED`");
 	
   client.user.setStatus('dnd')
   //Status: online, idle, invisible, dnd
 	
 const imap = {
-  user: 'googlebasedemail@gmail.com',
-  password: 'this-is-the-google-apppassword',
-  host: 'imap.gmail.com',
-  port: 993,
-  tls: true,
-  tlsOptions: { rejectUnauthorized: false },
-  box: 'Notification',
-};
+	user: mailauth.emailusername,
+	password: mailauth.emailpassword,
+	host: 'imap.gmail.com',
+	port: 993,
+	tls: true,
+	tlsOptions: { rejectUnauthorized: false },
+	box: mailauth.emailbox,
+	markSeen: true,
+  }
 	
 const n = notifier(imap);
 n.on('end', () => n.start()) // session closed
-  .on('mail', mail => client.channels.cache.get("ChannelID_BOTMAIN").send(mail.subject))
-  .start();
+	.on('mail', mail => client.channels.cache.get(channelbotmain).send(mail.subject))
+	.start(); //Forever RUN 
 
 cron.schedule('00 17 * * 3', () => {
 client.user.setActivity("WORK END soon START", {
@@ -60,43 +64,35 @@ setInterval(function() {
 }, 60*60*1000)
 
 cron.schedule('0 14 * * 5', () => {
-   client.channels.cache.get("ChannelID3").bulkDelete(100).catch(console.error);
-	console.log('DELETED last 100 messages in Channel3!');
-	client.channels.cache.get("ChannelID2").bulkDelete(100).catch(console.error);
-	console.log('DELETED last 100 messages in Channel2!');
-	client.channels.cache.get("ChannelID1").bulkDelete(100).catch(console.error);
-	console.log('DELETED last 100 messages in Channel1!');
-	client.channels.cache.get("Channel_BOTMAIN").send("WORK END RUTIN: \n`DELETED` last 100 messages in `Channel3!`, `Channel2!`, `Channel1!`");
+   clearchannelid.forEach(element => { 
+		client.channels.cache.get(element).bulkDelete(100).catch(console.error);
+		}); 
+		console.log('DELETED last 100 messages in `Channel3!`, `Channel2!`, `Channel1!`');
+		client.channels.cache.get(channelbotmain).send("WORK END RUTIN: \n`DELETED` last 100 messages in `Channel3!`, `Channel2!`, `Channel1!`");
 });
 
-cron.schedule('0 16 * * 1,2,4', () => {
-    client.channels.cache.get("ChannelID3").bulkDelete(100).catch(console.error);
-	console.log('DELETED last 100 messages in Channel3!');
-	client.channels.cache.get("ChannelID2").bulkDelete(100).catch(console.error);
-	console.log('DELETED last 100 messages in Channel2!');
-	client.channels.cache.get("ChannelID1").bulkDelete(100).catch(console.error);
-	console.log('DELETED last 100 messages in Channel1!');
-	client.channels.cache.get("Channel_BOTMAIN").send("WORK END RUTIN: \n`DELETED` last 100 messages in `Channel3!`, `Channel2!`, `Channel1!`");
+	cron.schedule('0 16 * * 1,2,4', () => {
+		clearchannelid.forEach(element => { 
+		client.channels.cache.get(element).bulkDelete(100).catch(console.error);
+		}); 
+		console.log('DELETED last 100 messages in `Channel3!`, `Channel2!`, `Channel1!`');
+		client.channels.cache.get(channelbotmain).send("WORK END RUTIN: \n`DELETED` last 100 messages in `Channel3!`, `Channel2!`, `Channel1!`");
 });
 
 cron.schedule('00 18 * * 3', () => {
-    client.channels.cache.get("ChannelID3").bulkDelete(100).catch(console.error);
-	console.log('DELETED last 100 messages in Channel3!');
-	client.channels.cache.get("ChannelID2").bulkDelete(100).catch(console.error);
-	console.log('DELETED last 100 messages in Channel2!');
-	client.channels.cache.get("ChannelID1").bulkDelete(100).catch(console.error);
-	console.log('DELETED last 100 messages in Channel1!');
-	client.channels.cache.get("Channel_BOTMAIN").send("WORK END RUTIN: \n`DELETED` last 100 messages in `Channel3!`, `Channel2!`, `Channel1!`");
+    clearchannelid.forEach(element => { 
+		client.channels.cache.get(element).bulkDelete(100).catch(console.error);
+		}); 
+		console.log('DELETED last 100 messages in `Channel3!`, `Channel2!`, `Channel1!`');
+		client.channels.cache.get(channelbotmain).send("WORK END RUTIN: \n`DELETED` last 100 messages in `Channel3!`, `Channel2!`, `Channel1!`");
 });
 
 cron.schedule('00 12 * * 1,2,3,4,5', () => {
-    client.channels.cache.get("ChannelID3").bulkDelete(100).catch(console.error);
-	console.log('DELETED last 100 messages in Channel3!');
-	client.channels.cache.get("ChannelID2").bulkDelete(100).catch(console.error);
-	console.log('DELETED last 100 messages in Channel2!');
-	client.channels.cache.get("ChannelID1").bulkDelete(100).catch(console.error);
-	console.log('DELETED last 100 messages in Channel1!');
-	client.channels.cache.get("Channel_BOTMAIN").send("12:00 - DÉLI TISZTÍTÁS RUTIN: \n`DELETED` last 100 messages in `Channel3!`, `Channel2!`, `Channel1!`");
+    clearchannelid.forEach(element => { 
+		client.channels.cache.get(element).bulkDelete(100).catch(console.error);
+		}); 
+		console.log('DELETED last 100 messages in `Channel3!`, `Channel2!`, `Channel1!`');
+		client.channels.cache.get(channelbotmain).send("WORK END RUTIN: \n`DELETED` last 100 messages in `Channel3!`, `Channel2!`, `Channel1!`");
 
   });
 
@@ -124,42 +120,70 @@ client.on("message", function(message) {
 else if (command === "dela") {
 	client.channels.cache.get("ChannelID1").bulkDelete(100).catch(console.error);
 	console.log('DELETED last 100 messages in Channnel2!');
-	client.channels.cache.get("ChannelID_BOTMAIN").send("`DELETED` last 100 messages in `Channel1`");
+	client.channels.cache.get(channelbotmain).send("`DELETED` last 100 messages in `Channel1`");
 }
 	
 else if (command === "delb") {
 	client.channels.cache.get("ChannelID2").bulkDelete(100).catch(console.error);
 	console.log('DELETED last 100 messages in Channel2!');
-	client.channels.cache.get("ChannelID_BOTMAIN").send("`DELETED` last 100 messages in `Channel2`");
+	client.channels.cache.get(channelbotmain).send("`DELETED` last 100 messages in `Channel2`");
 }
 
 else if (command === "delc") {
 	client.channels.cache.get("ChannelID3").bulkDelete(100).catch(console.error);
 	console.log('DELETED last 100 messages in Channel3!');
-	client.channels.cache.get("Channel_BOTMAIN").send("`DELETED` last 100 messages in `Channel3!`");
+	client.channels.cache.get(channelbotmain).send("`DELETED` last 100 messages in `Channel3!`");
 }
 
-  /* else if (command === "del") {
-	message.channel.bulkDelete(100);
-	console.log('DEL! 100 message ACTIVATED again!');
-        }, 1000*60*60 );
-//OFF	
-	 console.log('DEL command is active!');
- } */
+ else if (command === "delall") {
+	
+	clearchannelid.forEach(element => { 
+	client.channels.cache.get(element).bulkDelete(100).catch(console.error);
+		}); 
+	console.log('DELETED last 100 messages in `Channel3!`, `Channel2!`, `Channel1!`');
+	client.channels.cache.get(channelbotmain).send("WORK END RUTIN: \n`DELETED` last 100 messages in `Channel3!`, `Channel2!`, `Channel1!`");
+}
+else if (command === "xmasmsg") {
+	msgchannelid.forEach(element => { 
+	client.channels.cache.get(element).send("Xmas here! Have a great day!"); });  //your message add here
+	
+	else if (command === "newyearmsg") {
+	hivataluzenetall.forEach(element => { 
+	client.channels.cache.get(element).send("Happy new year!"); }); //your message add here
+}
 
 else if (command === "help") {
-message.reply("`használd a következő paancsokat: `\n`Válasz időt mutatja a bot és a géped között: !ping`\n`Számok gyors összeadására van: !szum`");
+message.reply("Adding soon");
+} //HELP command update soon
+
+else if (command === "delhelp") {
+		message.reply("Adding soon");
 }
-else if (command === "adhelp") {
-		message.reply("`használd a következő admin paancsokat: `\n`Közlemény törlés: !delkoz`\n`Pénzügy eAdat törlése: !delpadat`\n`Adó eAdat törlése: !delaadat`");
-}
-	
-	else if (command === "rstat") {
-const randommessages = ['Random text 1', 'Random 2 text', 'Random 3 text message']
+
+else if (command === "wstat") {
+const randommessages = ['Watch status 1','Watch status 2','Watch status 3','Watch status 4','Watch status 5']
 const randomMessage = randommessages[Math.floor(Math.random() * randommessages.length)];
 client.user.setActivity(randomMessage, {
   type: "WATCHING",
-  url: "https://mezobereny.hu"
+  url: "https://galandras.com"
+});
+}
+
+else if (command === "lstat") {
+const randommessages = ['listening stat 1', 'listening stat 2', 'listening stat 3', 'listening stat 4', 'listening stat 5']
+const randomMessage = randommessages[Math.floor(Math.random() * randommessages.length)];
+client.user.setActivity(randomMessage, {
+  type: "LISTENING",
+  url: "https://galandras.com"
+});
+}
+
+else if (command === "pstat") {
+const randommessages = ['Playing stat 1', 'Playing 2 text', 'Playing 3 stat text message']
+const randomMessage = randommessages[Math.floor(Math.random() * randommessages.length)];
+client.user.setActivity(randomMessage, {
+  type: "PLAYING",
+  url: "https://galandras.com"
 });
 }
 
