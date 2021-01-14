@@ -8,7 +8,7 @@ var cron = require('node-cron');
 require('console-inject');
 const clearchannelid = ['ChannelID1', 'ChannelID2', 'ChannelID3']; //Use developer mode in Discord app & add your channel ID
 const msgchannelid = ['MessageChannelID1', 'MessageChannelID2', 'MessageChannelID3', 'MessageChannelID4', 'MessageChannelID5', 'MessageChannelID6', 'MessageChannelID7', 'MessageChannelID8']; //All channel id message send 
-const channelbotmain = ['Channel_BOTMAIN_ID']; //your Bot main channel id here (not tested)
+const channelbotmain = 'Channel_BOTMAIN_ID'; //your Bot main channel id here
 
 client.on('ready', () => {
   console.log('BOT is RUN');
@@ -109,12 +109,12 @@ client.on("message", function(message) {
   else if (command === "sum") {
     const numArgs = args.map(x => parseFloat(x));
     const sum = numArgs.reduce((counter, x) => counter += x);
-    message.reply(`az összege: ${sum}!`);
+    message.reply(`calculate... this is: ${sum}!`);
   }
 	
-  else if (command === "kocka") {
+  else if (command === "randnum") {
     var response = [Math.floor(Math.random() * ((100 - 1) + 1) + 1)];
-    message.channel.send("Ez most... " + response + "!").then().catch(console.error);
+    message.channel.send("Aaaand... " + response + "!").then().catch(console.error);
   }
   
 else if (command === "dela") {
@@ -153,11 +153,19 @@ else if (command === "xmasmsg") {
 }
 
 else if (command === "help") {
-message.reply("Adding soon");
-} //HELP command update soon
+message.reply("This all commands: \n !ping - For test client-bot ping. \n !sum - For test add more numbers \n !randnum - if you need a random num (1~100) \n !delhelp - if u need a command for delete a channel all content. \n !xmasmsg - just a xmas message \n !newyearmsg - just a new year message \n \n Thanks for use Andrew BOT");
+} //HELP command
 
 else if (command === "delhelp") {
 		message.reply("Adding soon");
+}
+
+else if (command === "asbot")
+{
+	if (!args.length) {
+		return message.channel.send('Missing entered text!');
+	}
+	client.channels.cache.get(channelbotmain).send(args.splice(0).join(" "));
 }
 
 else if (command === "wstat") {
